@@ -50,6 +50,8 @@ func main() {
 			fmt.Println("alamat\t\t:", v.alamat)
 			fmt.Println("pekerjaan\t:", v.pekerjaan)
 			fmt.Println("alasan\t\t:", v.alasan)
+		} else {
+			fmt.Println("Data tidak ditemukan")
 		}
 	}
 }
