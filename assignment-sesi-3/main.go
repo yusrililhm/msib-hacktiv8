@@ -18,33 +18,33 @@ func main() {
 	// data
 	data := []student{
 		{
-			nama:    "Momo",
-			alamat: "Japan",
-			pekerjaan:     "Dancer",
-			alasan:  "Go is easy for beginner",
+			nama:      "Momo Hirai",
+			alamat:    "Japan",
+			pekerjaan: "Dancer",
+			alasan:    "Go is easy for beginner",
 		},
 		{
-			nama:    "Dahyun",
-			alamat: "Korea",
-			pekerjaan:     "Rapper",
-			alasan:  "Go is awesome",
+			nama:      "Kim Dahyun",
+			alamat:    "Korea",
+			pekerjaan: "Rapper",
+			alasan:    "Go is awesome",
 		},
 		{
-			nama:    "Sana",
-			alamat: "Japan",
-			pekerjaan:     "Vocal",
-			alasan:  "Go is fast",
+			nama:      "Minatozaki Sana",
+			alamat:    "Japan",
+			pekerjaan: "Vocal",
+			alasan:    "Go is fast",
 		},
 		{
-			nama:    "Mina",
-			alamat: "Japan",
-			pekerjaan:     "Vocal",
-			alasan:  "Go is the best",
+			nama:      "Myoi Mina",
+			alamat:    "Japan",
+			pekerjaan: "Vocal",
+			alasan:    "Go is the best",
 		},
 	}
 
 	for i, v := range data {
-		if strings.ToLower(args) == strings.ToLower(v.nama) {
+		if strings.Contains(strings.ToLower(v.nama), strings.ToLower(args)) == true {
 			fmt.Println("Id\t\t:", strconv.Itoa(i))
 			fmt.Println("nama\t\t:", v.nama)
 			fmt.Println("alamat\t\t:", v.alamat)
