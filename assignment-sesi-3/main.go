@@ -7,6 +7,13 @@ import (
 	"strings"
 )
 
+/*
+* Author 				: Yusril ilham Kholid
+* Kode peserta 	: GLNG-KS07-04
+* saat dirun cukup tambahkan 1 buah nama yang ingin dicari sebagai argumen
+* go run <file>.go <nama>
+*/
+
 type student struct {
 	nama, alamat, pekerjaan, alasan string
 }
@@ -44,6 +51,7 @@ func main() {
 	}
 
 	for i, v := range data {
+		// validasi, apakah nama mengandung argumen
 		if strings.Contains(strings.ToLower(v.nama), strings.ToLower(args)) == true {
 			fmt.Println("Id\t\t:", strconv.Itoa(i))
 			fmt.Println("nama\t\t:", v.nama)
