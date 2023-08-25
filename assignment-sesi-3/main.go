@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -13,36 +14,42 @@ import (
  */
 
 type student struct {
+	id                              int
 	nama, alamat, pekerjaan, alasan string
 }
 
 // data
 var data = []student{
 	{
+		id:        1,
 		nama:      "Momo Hirai",
 		alamat:    "Japan",
 		pekerjaan: "Dancer",
 		alasan:    "Go is easy for beginner",
 	},
 	{
+		id:        2,
 		nama:      "Kim Dahyun",
 		alamat:    "Korea",
 		pekerjaan: "Rapper",
 		alasan:    "Go is awesome",
 	},
 	{
+		id:        3,
 		nama:      "Minatozaki Sana",
 		alamat:    "Japan",
 		pekerjaan: "Vocal",
 		alasan:    "Go is fast",
 	},
 	{
+		id:        4,
 		nama:      "Myoi Mina",
 		alamat:    "Japan",
 		pekerjaan: "Vocal",
 		alasan:    "Go is the best",
 	},
 	{
+		id:        5,
 		nama:      "Im Nayeon",
 		alamat:    "South Korea",
 		pekerjaan: "main vocal",
@@ -66,7 +73,7 @@ func getStudent(name string) {
 		return
 	}
 
-	fmt.Println("id\t\t:")
+	fmt.Println("id\t\t:", studentFound.id)
 	fmt.Println("nama\t\t:", studentFound.nama)
 	fmt.Println("alamat\t\t:", studentFound.alamat)
 	fmt.Println("pekerjaan\t:", studentFound.pekerjaan)
@@ -74,10 +81,13 @@ func getStudent(name string) {
 }
 
 func main() {
-	// get argument
+	// get argument and validate argumen
 	args := os.Args
 
-	if args[1] == "" {
-		fmt.Println("error")
+	if len(args) > 1 {
+		name := args[1]
+		getStudent(name)
+	} else {
+		fmt.Println("Error :", errors.New("Argumen untuk nama tidak ditemukan\nHint : go run file.go <nama>"))
 	}
 }
