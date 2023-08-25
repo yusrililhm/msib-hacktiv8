@@ -43,14 +43,14 @@ var data = []student{
 		alasan:    "Go is the best",
 	},
 	{
-		nama: "Im Nayeon",
-		alamat: "South Korea",
+		nama:      "Im Nayeon",
+		alamat:    "South Korea",
 		pekerjaan: "main vocal",
-		alasan: "go is the best programming language",
+		alasan:    "go is the best programming language",
 	},
 }
 
-func getStudent(name string)  {
+func getStudent(name string) {
 	studentFound := student{}
 	condition := false
 
