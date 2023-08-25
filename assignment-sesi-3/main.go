@@ -42,6 +42,12 @@ var data = []student{
 		pekerjaan: "Vocal",
 		alasan:    "Go is the best",
 	},
+	{
+		nama: "Im Nayeon",
+		alamat: "South Korea",
+		pekerjaan: "main vocal",
+		alasan: "go is the best programming language",
+	},
 }
 
 func getStudent(name string)  {
@@ -70,5 +76,8 @@ func getStudent(name string)  {
 func main() {
 	// get argument
 	args := os.Args
-	getStudent(args[1])
+
+	if args[1] == "" {
+		fmt.Println("error")
+	}
 }
