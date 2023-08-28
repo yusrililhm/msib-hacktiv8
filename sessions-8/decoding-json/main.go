@@ -17,7 +17,7 @@ func main() {
 	}`
 
 	result := entity.Employee{}
-		
+
 	// decoding to struct
 	err := json.Unmarshal([]byte(data), &result)
 
@@ -33,9 +33,9 @@ func main() {
 
 	// encode object to json
 	employee := entity.Employee{
-		Name: "sana",
-		Address: "japan",
-		Age: 26,
+		Name:     "sana",
+		Address:  "japan",
+		Age:      26,
 		Division: "IT",
 	}
 
@@ -45,6 +45,6 @@ func main() {
 		log.Fatal(err.Error())
 		return
 	}
-	
+
 	fmt.Println(string(b))
 }
