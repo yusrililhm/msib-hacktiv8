@@ -1,0 +1,83 @@
+basePath: /
+definitions:
+  entity.Car:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: integer
+    type: object
+  model.Response:
+    properties:
+      data: {}
+    type: object
+host: localhost:9000
+info:
+  contact:
+    email: yusrililham62@gmail.com
+    name: Yusril Ilham
+    url: https://github.com/yusrililhm
+  description: An API for Car
+  title: Car API
+  version: "1.0"
+paths:
+  /car:
+    get:
+      consumes:
+      - application/json
+      description: Get all car
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Response'
+      summary: Get car
+      tags:
+      - car
+    post:
+      consumes:
+      - application/json
+      description: Add new car
+      parameters:
+      - description: body request for add new car
+        in: body
+        name: entity.Car
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Car'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entity.Car'
+      summary: Add car
+      tags:
+      - car
+  /car/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Find car by id
+      parameters:
+      - description: id for the car
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.Car'
+      summary: Find car
+      tags:
+      - car
+swagger: "2.0"
