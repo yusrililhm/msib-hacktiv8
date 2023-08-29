@@ -15,7 +15,8 @@ func GetEmployees(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 
-	json.NewEncoder(w).Encode(model.Employees)
+	b, _ := json.Marshal(model.Employees)
+	w.Write(b)
 }
 
 func AddEmployee(w http.ResponseWriter, r *http.Request)  {
