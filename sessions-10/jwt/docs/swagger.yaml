@@ -1,0 +1,60 @@
+basePath: /
+definitions:
+  helper.Response:
+    properties:
+      message:
+        type: string
+    type: object
+  model.UserRegister:
+    properties:
+      email:
+        type: string
+      fullName:
+        type: string
+      password:
+        type: string
+    type: object
+  model.UserRegisterResponse:
+    properties:
+      email:
+        type: string
+      fullName:
+        type: string
+    type: object
+host: 0.0.0.0:3000
+info:
+  contact:
+    email: yusrililham62@gmail.com
+    name: Yusril Ilham
+    url: https://github.com/yusrililhm
+  description: Auth with JWT
+  title: Authentication With JWT
+  version: "1.0"
+paths:
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint for User register
+      parameters:
+      - description: body request for user register
+        in: body
+        name: model.UserRegister
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserRegister'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.UserRegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: User register
+      tags:
+      - order
+swagger: "2.0"
