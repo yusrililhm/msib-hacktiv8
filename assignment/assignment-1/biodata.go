@@ -5,11 +5,6 @@ import (
 	"os"
 )
 
-/*
-* Author 				: Yusril ilham Kholid
-* Kode peserta 	: GLNG-KS07-04
- */
-
 func main() {
 	args := os.Args
 	util.ValidateArgs(args)
