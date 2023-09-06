@@ -12,5 +12,5 @@ import (
 
 func main() {
 	args := os.Args
-	util.GetArgs(args)
+	util.ValidateArgs(args)
 }
