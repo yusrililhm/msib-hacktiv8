@@ -110,7 +110,7 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Create(orderPayload *entity.Orde
 	// rollback if found error
 	if err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	// return id
@@ -122,7 +122,7 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Create(orderPayload *entity.Orde
 	// rollback if found error
 	if err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	// get returning id
@@ -131,7 +131,7 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Create(orderPayload *entity.Orde
 	// rollback if found error
 	if err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	for _, v := range itemsPayload {
@@ -141,14 +141,14 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Create(orderPayload *entity.Orde
 		// rollback if found error
 		if err != nil {
 			tx.Rollback()
-			return errs.NewInternalServerError("something wrong")
+			return errs.NewInternalServerError("something went wrong")
 		}
 	}
 
 	// commit
 	if err := tx.Commit(); err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	// return error as nil if transaction success
@@ -161,19 +161,19 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Delete(orderId int) errs.Error {
 
 	if err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	_, err = tx.Exec(deleteOrderQuery, orderId)
 
 	if err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	if err := tx.Commit(); err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	return nil
@@ -185,7 +185,7 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Read() ([]*order_repository.Orde
 	var orderItems []*order_repository.OrderItem
 
 	if err != nil {
-		return nil, errs.NewInternalServerError("something wrong")
+		return nil, errs.NewInternalServerError("something went wrong")
 	}
 
 	for row.Next() {
@@ -209,7 +209,7 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Read() ([]*order_repository.Orde
 			if err == sql.ErrNoRows {
 				return nil, errs.NewNotFoundError("order not found")
 			}
-			return nil, errs.NewInternalServerError("something wrong")
+			return nil, errs.NewInternalServerError("something went wrong")
 		}
 
 		orderItems = append(orderItems, &orderItem)
@@ -234,7 +234,7 @@ func (orderRepositoryImpl *OrderRepositoryImpl) ReadOrderById(orderId int) (*ent
 		if errors.Is(err, sql.ErrNoRows) {
 			return nil, errs.NewNotFoundError("order not found")
 		}
-		return nil, errs.NewInternalServerError("something wrong")
+		return nil, errs.NewInternalServerError("something went wrong")
 	}
 
 	return &order, nil
@@ -246,14 +246,14 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Update(orderId int, orderPayload
 
 	if err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	_, err = tx.Exec(updateOrderQuery, orderId, orderPayload.CustomerName, orderPayload.OrderedAt)
 
 	if err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something worng")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	for _, eachItem := range itemPayload {
@@ -261,13 +261,13 @@ func (orderRepositoryImpl *OrderRepositoryImpl) Update(orderId int, orderPayload
 
 		if err != nil {
 			tx.Rollback()
-			return errs.NewInternalServerError("something wrong")
+			return errs.NewInternalServerError("something went wrong")
 		}
 	}
 
 	if err := tx.Commit(); err != nil {
 		tx.Rollback()
-		return errs.NewInternalServerError("something wrong")
+		return errs.NewInternalServerError("something went wrong")
 	}
 
 	return nil
