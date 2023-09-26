@@ -54,7 +54,7 @@ func (itemPg *itemRepositoryImpl) GetItemsByCode(itemsCode []any) ([]*entity.Ite
 	row, err := itemPg.db.Query(query, itemsCode...)
 
 	if err != nil {
-		return nil, errs.NewInternalServerError("something wrong")
+		return nil, errs.NewInternalServerError("something went wrong")
 	}
 
 	items := []*entity.Item{}
@@ -70,7 +70,7 @@ func (itemPg *itemRepositoryImpl) GetItemsByCode(itemsCode []any) ([]*entity.Ite
 		)
 
 		if err != nil {
-			return nil, errs.NewInternalServerError("something wrong")
+			return nil, errs.NewInternalServerError("something went wrong")
 		}
 
 		items = append(items, &item)
