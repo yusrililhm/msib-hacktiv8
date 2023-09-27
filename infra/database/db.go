@@ -12,8 +12,14 @@ import (
 const (
 	host     = "localhost"
 	port     = 5432
-	user     = "postgres"
-	password = "postgres" // postgress
+
+	user     = "airelljordan"
+	password = "postgress"
+
+	// my db conf
+	// user     = "postgres"
+	// password = "postgres"
+
 	dbname   = "order-app"
 	dialect  = "postgres"
 )
