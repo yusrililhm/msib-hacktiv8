@@ -1,11 +1,12 @@
 package handler
 
 import (
+	"h8-assignment-2/infra/config"
 	"h8-assignment-2/infra/database"
 	"h8-assignment-2/repository/item_repository/item_pg"
 	"h8-assignment-2/repository/order_repository/order_pg"
 	"h8-assignment-2/service"
-	
+
 	_ "h8-assignment-2/docs"
 
 	"github.com/gin-gonic/gin"
@@ -27,14 +28,17 @@ import (
 func StartApplication() {
 	app := gin.Default()
 
-	// swagger
-	app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggoFiles.Handler))
+	// load env
+	config.LoadAppConfig()
 
 	// init database
 	database.InitiliazeDatabase()
 
 	// dependencies injection
 	db := database.GetDatabaseInstance()
+
+	// swagger
+	app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggoFiles.Handler))
 
 	itemRepository := item_pg.NewItemRepositoryImpl(db)
 	orderRepository := order_pg.NewOrderRepositoryImpl(db)
@@ -52,5 +56,6 @@ func StartApplication() {
 	}
 
 	// run server
-	app.Run(":8080")
+	port := config.GetAppConfig().Port
+	app.Run(":" + port)
 }
