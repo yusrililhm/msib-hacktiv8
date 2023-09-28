@@ -2,26 +2,12 @@ package database
 
 import (
 	"fmt"
+	"h8-assignment-2/infra/config"
 	"log"
-	
+
 	"database/sql"
 
 	_ "github.com/lib/pq"
-)
-
-const (
-	host     = "localhost"
-	port     = 5432
-
-	user     = "airelljordan"
-	password = "postgress"
-
-	// my db conf
-	// user     = "postgres"
-	// password = "postgres"
-
-	dbname   = "order-app"
-	dialect  = "postgres"
 )
 
 var (
@@ -30,11 +16,12 @@ var (
 )
 
 func handleDatabaseConnection() {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname,
+	appConfig := config.GetAppConfig()
+	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+		appConfig.DBHost, appConfig.DBPort, appConfig.DBUser, appConfig.DBUser, appConfig.DBName,
 	)
 
-	db, err = sql.Open(dialect, psqlInfo)
+	db, err = sql.Open(appConfig.Dialect, psqlInfo)
 
 	if err != nil {
 		log.Panic("error occured while trying to validate database arguments:", err)
